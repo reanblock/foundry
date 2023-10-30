@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.13;
 
+// Run the test with the gas report option enabled!
+// forge test -vvv --gas-report --mc GasSavingExampleTest
 contract GasSavingExample {
     uint160 public packedVariables;
 
@@ -14,9 +16,9 @@ contract GasSavingExample {
         return (x, y);
     }
 
-    /* Comment out the above and uncomment below
-    /* and check the gas costs of the two and you will
-    /* notice the bit shifting example above is cheaper!
+    // Comment out the above and uncomment below
+    // and check the gas costs of the two and you will
+    // notice the bit shifting example above is cheaper!
 
     // uint80 public var1;
     // uint80 public var2;
