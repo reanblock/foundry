@@ -9,6 +9,8 @@ contract StringStorageTest is Test {
     StringStorage2 public store2;
 
     function setUp() public {
+        // uncomment if you want to run in a fork
+        // vm.createSelectFork("bsc", 33101660);
         store1 = new StringStorage1();
         store2 = new StringStorage2();
     }
