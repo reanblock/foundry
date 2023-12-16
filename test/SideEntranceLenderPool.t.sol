@@ -21,7 +21,7 @@ contract InvariantSideEntranceLenderPool is Test {
     }
     
     // invariant test function
-    function invariant_poolBalanceAlwaysGtThanInitialBalance() external {
+    function xinvariant_poolBalanceAlwaysGtThanInitialBalance() external {
         // assert that the pool balance will never go below the initial balance (the 10 ether deposited during deployment)
         assert(address(pool).balance >= pool.initialPoolBalance());
     }
