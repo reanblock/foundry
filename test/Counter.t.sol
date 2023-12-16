@@ -21,4 +21,23 @@ contract CounterTest is Test {
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
+
+    function test_SendingEthToContract() public {
+        assertEq(address(counter).balance, 0);
+
+        address payable counterPayable = payable(address(counter));
+        (bool success, ) = counterPayable.call{value: 1 ether}("");
+
+        assertTrue(success);
+        assertEq(address(counter).balance, 1 ether);
+    }
+
+    function test_AddressCodeCheck() public {
+        // check deployed contract code length
+        assertGt(address(counter).code.length, 0);
+
+        // eoa address code length should be zero
+        address alice = makeAddr("alice");
+        assertEq(alice.code.length, 0);
+    }
 }

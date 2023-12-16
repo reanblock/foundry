@@ -24,4 +24,6 @@ contract Counter {
     function echidna_check_number() public view returns (bool) {
         return(number >= 0);
     }
+
+    receive() external payable {}
 }
