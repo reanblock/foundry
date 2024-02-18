@@ -19,4 +19,28 @@ contract ConstantsTest is Test {
         constants.get_max_value();
         noConstants.get_max_value();
     }
+
+    function test_IfOrConditional() view public {
+        // If either condition in the if statement is FALSE, the modifier reverts the transaction,
+        // if (
+        //     msg.sender == address(kernel) ||
+        //     !kernel.modulePermissions(KEYCODE(), Policy(msg.sender), msg.sig)
+        // ) revert Module_PolicyNotPermitted(msg.sender);
+        
+        
+        if (
+            // msg.sender == address(kernel) ||
+            false ||
+            // !kernel.modulePermissions(KEYCODE(), Policy(msg.sender), msg.sig)
+            true
+        ) console2.log("TRUE");
+
+        console2.log("HERE ANYWAY");
+        
+        // {
+        //     console2.log("TRUE");
+        // } else {
+        //     console2.log("FALSE");
+        // }
+    }
 }

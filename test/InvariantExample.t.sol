@@ -5,7 +5,6 @@ import {Test, console2} from "forge-std/Test.sol";
 import {InvariantExample} from "../src/InvariantExample.sol";
 
 contract InvariantExample1Test is Test {
-
     InvariantExample foo;
 
     function setUp() external {
