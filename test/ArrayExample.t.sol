@@ -31,6 +31,20 @@ contract ArrayExampleTest is Test {
     }
 
     function test_getElementUnsafeAccess() public {
-        arrayExample.getElementUnsafeAccess(8);
+        assertEq(arrayExample.getElementUnsafeAccess(7), 99);
+    }
+
+    function test_getElementUnsafeAccessOutOfRange() public {
+        // the 'unsafe' access does not revert but returns 0
+        assertEq(arrayExample.getElementUnsafeAccess(8), 0);
+    }
+
+    function test_getElementAtIndexFunctioReverts() public {
+        vm.expectRevert(); //array out-of-bounds access
+        arrayExample.getElementAtIndex(8);
+    }
+
+    function test_getElementUnsafeMemoryAccess() public {
+        assertEq(arrayExample.getElementUnsafeMemoryAccess(1), 99);
     }
 }

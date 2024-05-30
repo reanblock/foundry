@@ -26,4 +26,11 @@ contract ArrayExample {
     function getElementUnsafeAccess(uint256 pos) public view returns(uint256) {
         return arr.unsafeAccess(pos).value;
     }
+
+    function getElementUnsafeMemoryAccess(uint256 pos) public view returns(uint256) {
+        uint256[] memory memArr = new uint256[](2);
+        memArr[0] = 88;
+        memArr[1] = 99;
+        return memArr.unsafeMemoryAccess(pos);
+    }
 }
