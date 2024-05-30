@@ -5,4 +5,12 @@ import {Ownable} from '@openzeppelin/contracts/access/Ownable.sol';
 
 contract OwnableExample is Ownable {
     constructor(address initialOwner) Ownable(initialOwner) {}
+
+    function anyoneCanCall() public pure returns(bool) {
+        return true;
+    }
+
+    function onlyOwnerCanCall() public view onlyOwner returns(bool) {
+        return true;
+    }
 }

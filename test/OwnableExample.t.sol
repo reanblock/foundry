@@ -42,4 +42,30 @@ contract OwnableExampleTest is Test, IOwnable {
         vm.expectRevert(abi.encodeWithSelector(OwnableUnauthorizedAccount.selector, address(this)));
         ownableExample.transferOwnership(address(0x12));
     }
+
+    function test_anyoneCanCallFunction() public {
+        ownableExample.anyoneCanCall();
+        vm.prank(deployer);
+        ownableExample.anyoneCanCall();
+        vm.prank(initialOwner);
+        ownableExample.anyoneCanCall();
+    }
+
+    function test_onlyOwnerCanCallFunction() public {
+        // calling from this contract will revert
+        vm.expectRevert(abi.encodeWithSelector(OwnableUnauthorizedAccount.selector, address(this)));
+        bool ret1 = ownableExample.onlyOwnerCanCall();
+        assertEq(ret1, false);
+
+        // calling from a non owner account such as the deployer will revert
+        vm.prank(deployer);
+        vm.expectRevert(abi.encodeWithSelector(OwnableUnauthorizedAccount.selector, deployer));
+        bool ret2 = ownableExample.onlyOwnerCanCall();
+        assertEq(ret2, false);
+
+        // calling as the owner - all should be good, no revert and function returns true
+        vm.prank(initialOwner);
+        bool ret3 = ownableExample.onlyOwnerCanCall();
+        assertEq(ret3, true);
+    }
 }
