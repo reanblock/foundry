@@ -1,5 +1,34 @@
 ## Foundry
 
+### Cast
+
+Parse address from returned slot data:
+
+```
+cast parse-bytes32-address $(cast st 0x400E0B7106FFC2Dbc1e4c4EC096C288Ae6663cc8 208 -r base_mainnet)
+```
+
+### Forge Inspect
+
+Use forge cli to inspect methods, abi, storage etc for any contract:
+
+```
+forge inspect ERC20BondingCurveFactoryV1 methods 
+```
+
+### Forge Install
+
+Use the following to install a specific version of openzeppelin contracts along side the latest. This ensures the are stored into different folders under the `lib` directory and and then be referenced accordingly in the project ([ref](https://ethereum.stackexchange.com/questions/153530/how-can-i-install-multiple-versions-of-a-dependency-in-foundry)).
+
+```
+# notice show openzeppelin-contracts-solc-0.7= is prepended to the dependency
+# this will name the dependency "openzeppelin-contracts-solc-0.7" instead of the default name "openzeppelin-contracts"
+forge install openzeppelin-contracts-solc-0.7=openzeppelin/openzeppelin-contracts@v3.4.2-solc-0.7
+
+# now install the latest version of openzeppelin-contracts as follows
+forge install openzeppelin/openzeppelin-contracts
+```
+
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
 Foundry consists of:
