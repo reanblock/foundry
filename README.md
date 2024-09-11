@@ -29,6 +29,25 @@ forge install openzeppelin-contracts-solc-0.7=openzeppelin/openzeppelin-contract
 forge install openzeppelin/openzeppelin-contracts
 ```
 
+### Forge Script
+
+To run a script such as Counter.s.sol on a blockchain network you should first add your private key to the keystore like so:
+
+```
+cast wallet import auditor --interactive
+```
+
+Now run the script like so:
+
+```
+forge script script/Counter.s.sol:CounterScript /
+                --rpc-url sepolia /
+                --account auditor / 
+                --sender 0x471cd8eaa5d60c2ed4dd42cc3b0de75ecfbbda62 / 
+                --broadcast -vvvv
+                
+```
+
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
 Foundry consists of:
