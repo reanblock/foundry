@@ -1,4 +1,64 @@
-## Foundry
+# Foundry
+
+## Setup Foundry in exisitng project
+
+Clone the existing project repo then run the following innside the project root directory
+
+NOTE: using `--force` may overwrite somefiles (like your README.md and gitigore files) - so back these up first. This command will also install forge-std and commit the changes to your local repo.
+
+```
+forge init --force
+```
+
+Then install specific dependencies that match the project requirements. For example:
+
+```
+forge install OpenZeppelin/openzeppelin-contracts@v3.2.0
+```
+
+**Next steps:**
+
+- If you need to install multiple versions of a library you can add then to specific folders and shown [here](#forge-install).
+- Update your [foundry.toml](./foundry.toml) file with the required `rpc_endpoints` and `remappings` entries for your project.
+- You may also need to update the `src` in  [foundry.toml](./foundry.toml)  to `src = "contracts"` if the projects contracts are in this folder (such as with Hardhat or Truffle).
+- Delete the `Counter.*.sol` example contract files.
+  ```
+  rm src/Counter.sol
+  rm test/Counter.t.sol
+  rm script/Counter.s.sol
+  ```
+- Compile all the project contracts using `forge build` and check the artifacts are saved in the `out` directory.
+- Commit all your changes to your Github repo.
+- Restart Visual Studio Code as this is required to have the solidity dependencies clickable in the source code (perhaps its a bug so I find a restart is required)
+- Add a test file for one of the more basic contracts to make sure everything is wired up correctly. Below is an example for a contract `contracts/Market.sol`:
+  ```solidity
+    // SPDX-License-Identifier: UNLICENSED
+    pragma solidity ^0.6.0;
+    pragma experimental ABIEncoderV2;
+
+    import {Test, console} from "forge-std/Test.sol";
+    import {Market} from "../contracts/Market.sol";
+
+    contract MarketTest is Test {
+        Market market;
+
+        function setUp() public {
+            market = new Market();
+        }
+
+        function test_deployed() public {
+            console.log(address(market));
+        }
+    }
+  ```
+- Finally you can add the following section to your `.gitignore` file:
+  ```
+  # Foundry
+  cache/
+  out/
+  !/broadcast
+  /broadcast/**/dry-run/
+  ```
 
 ### Cast
 
