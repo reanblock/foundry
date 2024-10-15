@@ -60,6 +60,23 @@ forge install OpenZeppelin/openzeppelin-contracts@v3.2.0
   /broadcast/**/dry-run/
   ```
 
+### Remappings
+
+Remappings are maps between the import statements in the contract and the location of the installed dependency. These dependencies are usually in the `lib` or `node_modules` directory. A typical remapping might look like so:
+
+```json
+remappings = [
+    "@openzeppelin/contracts=lib/openzeppelin-contracts/contracts",
+    "@uniswap/periphery/contracts=lib/v2-periphery/contracts"
+]
+```
+
+Once this is configured you should be able to click on the imported file reference in the contract to open the dependency. If this does not work check:
+
+* The remappings paths are correct.
+* The Solidty plugin is installed and enabled.
+* Restart VS Code
+
 ### Cast
 
 Parse address from returned slot data:
