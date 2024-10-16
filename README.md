@@ -125,6 +125,26 @@ forge script script/Counter.s.sol:CounterScript /
                 
 ```
 
+## Forge test forks
+
+To run tests in a fork simply add the RPC endpoint in `rpc_endpoints` to the `foundry.toml` file, for example:
+
+```json
+rpc_endpoints = { mainnet = "https://rpc.ankr.com/eth" }
+```
+
+The in the setUp function of the test create the fork of that chain at a specified block height like so:
+
+```solidity
+vm.createSelectFork("mainnet", 6_700_000);
+```
+
+Sometimes a test run against a spefific fork might fail with odd errors like `EvmError: NotActivated`. If so try adding the following to your `foundry.toml` file:
+
+```json
+evm_version = "shanghai"
+```
+
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
 Foundry consists of:
