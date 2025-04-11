@@ -106,6 +106,12 @@ forge install openzeppelin-contracts-solc-0.7=openzeppelin/openzeppelin-contract
 forge install openzeppelin/openzeppelin-contracts
 ```
 
+To install as a submodule without any diff being added to the commit just pass the `--no-commit` flag like so:
+
+```bash
+forge install OpenZeppelin/openzeppelin-contracts --no-commit
+```
+
 ### Forge Script
 
 To run a script such as Counter.s.sol on a blockchain network you should first add your private key to the keystore like so:
